@@ -22,12 +22,16 @@ description: >
 | --- | --- | --- | --- |
 | 模板 | `references/templates.md` | 各笔记类型的完整结构模板 | 生成笔记前，按类型读取对应模板 |
 | 标签词表 | `references/tags.md` | 标签命名规则与可用标签清单 | 填写 frontmatter `tags` 字段时 |
+| Obsidian 语法速查 | `references/obsidian-syntax.md` | Wikilinks、embeds、callouts 等官方语法 | 需要确认 Obsidian 特有语法细节时 |
+| Callouts 参考 | `references/CALLOUTS.md` | Callout 类型完整列表与别名 | 使用 callout 时 |
+| Embeds 参考 | `references/EMBEDS.md` | 嵌入语法完整列表 | 使用嵌入时 |
+| Properties 参考 | `references/PROPERTIES.md` | Obsidian 支持的属性类型 | 处理 frontmatter 时 |
 
 如果依赖文件不可用，使用本文件中的精简骨架和核心标签规则作为 fallback。
 
 ## 核心原则
 
-1. **CommonMark 对齐**：以 CommonMark 规范为基准，Obsidian 专有语法仅在必要时使用
+1. **个性化优先**：本 skill 的所有规定（如 tags 行内数组格式、禁用 `==高亮==` 等）均为个性化设置。Obsidian 官方语法的详细参考见 `references/` 下的语法速查文件，本 skill 未明确覆盖的语法细节可从中查阅
 2. **跨编辑器兼容**：输出在 Obsidian、Typora、GitHub 上均可正确渲染
 3. **纯文本优先**：正文不使用 HTML 标签（`<br>`, `<div>`, `<span>` 等）
 4. **中文优先**：正文使用中文，术语保留英文原文

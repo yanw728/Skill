@@ -16,7 +16,9 @@ description: >
 
 ## 与 obsidian-writing 的关系
 
-本 skill 依赖 obsidian-writing 作为格式权威，不重复定义规范：
+两层结构：`obsidian-writing`（基础层，含格式规范与 Obsidian 语法参考）→ `vault-cleanup` / `conversation-distill`（应用层）。本 skill 直接遵循 obsidian-writing。
+
+本 skill 以 obsidian-writing 为格式权威，不重复定义规范：
 
 | 职责 | obsidian-writing | vault-cleanup |
 | --- | --- | --- |
@@ -29,9 +31,9 @@ description: >
 
 | 文件 | 路径 | 用途 |
 | --- | --- | --- |
-| 格式规范 | `/mnt/skills/user/obsidian-writing/SKILL.md` | Frontmatter schema、正文格式、双链策略、命名规则 |
-| 标签词表 | `/mnt/skills/user/obsidian-writing/references/tags.md` | 标签选取和归并 |
-| 模板 | `/mnt/skills/user/obsidian-writing/references/templates.md` | type 判断参考 |
+| 格式规范 | `obsidian-writing/SKILL.md` | Frontmatter schema、正文格式、双链策略、命名规则 |
+| 标签词表 | `obsidian-writing/references/tags.md` | 标签选取和归并 |
+| 模板 | `obsidian-writing/references/templates.md` | type 判断参考 |
 
 ## 核心哲学
 
