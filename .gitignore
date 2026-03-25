@@ -4,3 +4,6 @@ node_modules/
 *.log
 __pycache__/
 .vscode/
+
+# 构建产物（用脚本生成，不需要提交）
+dist/

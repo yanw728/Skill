@@ -1,0 +1,9 @@
+name: obsidian-writing
+description: 生成规范化的 Obsidian Markdown 笔记，是 vault 中所有 .md 输出的格式权威
+author: yanw728
+source: local
+version: v1.0.0
+license: MIT
+platforms: [claude]
+tags: [obsidian, writing, markdown, 格式规范]
+last_synced: 2026-03-25

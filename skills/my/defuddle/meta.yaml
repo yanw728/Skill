@@ -1,0 +1,9 @@
+name: defuddle
+description: 用 Defuddle CLI 从网页提取干净的 Markdown 内容，去掉广告和导航栏，省 token
+author: yanw728
+source: local
+version: v1.0.0
+license: MIT
+platforms: [claude]
+tags: [web, markdown, extraction]
+last_synced: 2026-03-25

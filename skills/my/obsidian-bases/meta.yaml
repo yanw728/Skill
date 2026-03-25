@@ -1,0 +1,9 @@
+name: obsidian-bases
+description: 创建和编辑 Obsidian Bases（.base 文件），用 YAML 定义表格、卡片、列表等数据库视图
+author: yanw728
+source: local
+version: v1.0.0
+license: MIT
+platforms: [claude]
+tags: [obsidian, bases, database, YAML]
+last_synced: 2026-03-25

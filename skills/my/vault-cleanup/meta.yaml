@@ -1,0 +1,9 @@
+name: vault-cleanup
+description: 对 Obsidian vault 进行全库标准化：统一标签体系、重建双链网络、规范 frontmatter 和文件名
+author: yanw728
+source: local
+version: v1.0.0
+license: MIT
+platforms: [claude]
+tags: [obsidian, cleanup, 标准化, 知识图谱]
+last_synced: 2026-03-25

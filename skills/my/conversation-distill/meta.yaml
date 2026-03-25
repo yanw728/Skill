@@ -1,0 +1,9 @@
+name: conversation-distill
+description: 把 AI 对话提炼成 Obsidian 笔记，提取认知过程（质疑、转向、盲区）和知识增量
+author: yanw728
+source: local
+version: v1.0.0
+license: MIT
+platforms: [claude]
+tags: [obsidian, writing, distill, 认知]
+last_synced: 2026-03-25
