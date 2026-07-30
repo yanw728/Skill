@@ -1,0 +1,9 @@
+---
+name: conversation-distill
+description: >
+  将 AI 对话提炼为 Obsidian 兼容的 Markdown 笔记，突出认知轨迹、关键结论与真正有增量的客观机制。
+metadata:
+  openclaw:
+    requires:
+      - obsidian-writing
+---

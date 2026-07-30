@@ -1,53 +1,44 @@
 #!/usr/bin/env bash
-# build-claude.sh — 组装 Claude 版本的 Skill 文件
-#
-# 做什么：
-#   读取每个 skill 的 SKILL.md，如果有 adapters/claude.md 就追加合并，
-#   最终输出到 dist/claude/ 目录。
-#
-# 用法：
-#   bash scripts/build-claude.sh
-
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC_DIRS=("$REPO_ROOT/skills/my" "$REPO_ROOT/skills/vendor")
-OUT_DIR="$REPO_ROOT/dist/claude"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/lib.sh"
 
-# 清空输出目录
-rm -rf "$OUT_DIR"
-mkdir -p "$OUT_DIR"
+OUT_ROOT="$REPO_ROOT/dist/claude"
+clean_dist_dir "$OUT_ROOT"
 
-count=0
+while IFS= read -r skill; do
+  [[ -n "$skill" ]] || continue
 
-for src_dir in "${SRC_DIRS[@]}"; do
-  [ -d "$src_dir" ] || continue
+  source_dir="$(resolve_source_dir "$skill" || true)"
+  overlay_dir="$(resolve_overlay_dir "$skill" || true)"
 
-  for skill_dir in "$src_dir"/*/; do
-    [ -f "$skill_dir/SKILL.md" ] || continue
+  if [[ -z "$source_dir" ]]; then
+    log "skip $skill: no source SKILL.md found"
+    continue
+  fi
 
-    skill_name="$(basename "$skill_dir")"
-    out_skill_dir="$OUT_DIR/$skill_name"
-    mkdir -p "$out_skill_dir"
+  out_dir="$OUT_ROOT/$skill"
+  mkdir -p "$out_dir"
 
-    # 基础：复制 SKILL.md
-    cp "$skill_dir/SKILL.md" "$out_skill_dir/SKILL.md"
+  strip_frontmatter "$source_dir/SKILL.md" > "$out_dir/SKILL.md"
 
-    # 如果有 Claude 适配文件，追加到 SKILL.md 末尾
-    if [ -f "$skill_dir/adapters/claude.md" ]; then
-      printf '\n\n---\n\n' >> "$out_skill_dir/SKILL.md"
-      cat "$skill_dir/adapters/claude.md" >> "$out_skill_dir/SKILL.md"
+  if [[ -n "$overlay_dir" && -f "$overlay_dir/adapters/claude.md" ]]; then
+    printf '\n\n***\n\n' >> "$out_dir/SKILL.md"
+    cat "$overlay_dir/adapters/claude.md" >> "$out_dir/SKILL.md"
+  fi
+
+  description="$(
+    if [[ -n "$overlay_dir" && -f "$overlay_dir/meta.yaml" ]]; then
+      extract_yaml_description "$overlay_dir/meta.yaml"
+    else
+      extract_yaml_description "$source_dir/SKILL.md"
     fi
+  )"
 
-    # 复制 references/ 目录（如果有）
-    if [ -d "$skill_dir/references" ]; then
-      cp -r "$skill_dir/references" "$out_skill_dir/references"
-    fi
+  if [[ -n "$description" ]]; then
+    printf '%s\n' "$description" > "$out_dir/description.txt"
+  fi
 
-    count=$((count + 1))
-    echo "  ✓ $skill_name"
-  done
-done
-
-echo ""
-echo "Claude 构建完成：$count 个 skill → $OUT_DIR"
+  copy_meta_if_present "$overlay_dir" "$out_dir"
+  log "built claude/$skill"
+done < <(list_skill_names)

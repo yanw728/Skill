@@ -1,0 +1,10 @@
+name: your-skill-name
+author: your-name-or-org
+description: "一句话说明 skill 做什么，优先写成用户会说出口的需求。"
+source: https://github.com/your-org/your-repo
+version: 0.1.0
+license: MIT
+platforms: [claude, openclaw, gpt]
+tags: [tag1, tag2]
+last_synced: 2026-03-25
+notes: "可选。记录迁移状态、依赖、平台特例。"
